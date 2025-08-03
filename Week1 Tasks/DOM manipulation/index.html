@@ -26,6 +26,34 @@
     <div id="container">
       <div id="animate"></div>
     </div>
+
+    <h1 onclick="changeText(this)">Click on this text!</h1>
+    <!-- mouse events -->
+    <div
+      onmousedown="mDown(this)"
+      onmouseup="mUp(this)"
+      style="
+        background-color: #d94a38;
+        width: 90px;
+        height: 20px;
+        padding: 40px;
+      "
+    >
+      Click Me
+    </div>
+
+    <!-- add event listener -->
+
+    <h2>JavaScript addEventListener()</h2>
+
+    <p>
+      This example uses the addEventListener() method to attach a click event to
+      a button.
+    </p>
+
+    <button id="myBtn">Try it</button>
+
+    <p id="date"></p>
     <script>
       // dom methods and properites
 
@@ -55,6 +83,10 @@
         document.getElementById("demo").style.color = "red";
       };
       document.getElementById("demo").onclick = changeColor;
+      //will change text of heading
+      function changeText(id) {
+        id.innerHTML = "Ooops!";
+      }
       //return html collection of all elements with same class name
       const x = document.getElementsByClassName("intro");
       console.log(x);
@@ -79,6 +111,29 @@
           }
         }
       }
+
+      //The onload and onunload events are triggered when the user enters or leaves the page.
+
+      //   handling mouse events
+      function mDown(obj) {
+        obj.style.backgroundColor = "#1ec5e5";
+        obj.innerHTML = "Release Me";
+      }
+
+      function mUp(obj) {
+        obj.style.backgroundColor = "#D94A38";
+        obj.innerHTML = "Thank You";
+      }
+
+      //addeventlistener
+      document.getElementById("myBtn").addEventListener("click", displayDate);
+
+      function displayDate() {
+        document.getElementById("date").innerHTML = Date();
+      }
+
+      //event bubbling : event goes from child to ancestors, by default behaviour
+      //event capturing: event goes from parent to child, not by default 
     </script>
   </body>
 </html>
