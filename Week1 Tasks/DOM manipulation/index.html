@@ -1,16 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DOM manipulation</title>
-</head>
-<body>
-    <p id="demo"></p>
+    <style>
+      #container {
+        width: 400px;
+        height: 400px;
+        position: relative;
+        background: rgb(230, 230, 176);
+      }
+      #animate {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        background-color: rgb(193, 25, 25);
+      }
+    </style>
+  </head>
+  <body>
+    <p id="demo" class="intro"></p>
+    <img src="" alt="" />
+    <p><button onclick="myMove()">Click for animatin</button></p>
+    <div id="container">
+      <div id="animate"></div>
+    </div>
+    <script>
+      // dom methods and properites
 
-<script>
-    document.getElementById("demo").innerHTML = "Hello World!";
-    //here getElementById is HTML DOM method/action(that can be used to access element) and innerHTML is property(that can changed or set)
-</script>
-</body>
+      //here getElementById is HTML DOM method/action(that can be used to access element) and innerHTML is property(that can changed or set)
+
+      document.getElementById("demo").innerHTML = "Hello World!";
+      //basically getElementByTagName returns html collection of all img tags in dom so have to specify first element  ,
+
+      document.getElementsByTagName("img")[0].src =
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtDZ3-Yw3bgKq-QSpxuvlERsUfa77gz2JJcw&s";
+      //the value to function is in "alt" ohter wise js will consider alt a varaible
+      document
+        .getElementsByTagName("img")[0]
+        .setAttribute("alt", "flower image");
+      //properties values must be in double quotes otherwise are considered as variables
+      document.getElementById("demo").style.color = "blueviolet";
+
+      p_element = document.createElement("p");
+      p_element.innerHTML = "Hello World 2";
+      // wrong document.appendChild(p_element); because dom is webpage while need to append in a dom object/tag/element
+      p_element.style.color = "blue";
+      p_element.setAttribute("class", "intro");
+      document.body.appendChild(p_element);
+
+      //adding event handlers
+      const changeColor = () => {
+        document.getElementById("demo").style.color = "red";
+      };
+      document.getElementById("demo").onclick = changeColor;
+      //return html collection of all elements with same class name
+      const x = document.getElementsByClassName("intro");
+      console.log(x);
+      //to get all html elements that matches a specified css selector (id, class, attribute..)
+
+      console.log(document.querySelectorAll(".intro"));
+
+      //dom animation
+      function myMove() {
+        let id = null;
+        const elem = document.getElementById("animate");
+        let pos = 0;
+        clearInterval(id);
+        id = setInterval(frame, 5);
+        function frame() {
+          if (pos == 350) {
+            clearInterval(id);
+          } else {
+            pos++;
+            elem.style.top = pos + "px";
+            elem.style.left = pos + "px";
+          }
+        }
+      }
+    </script>
+  </body>
 </html>
