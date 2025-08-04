@@ -54,6 +54,18 @@
     <button id="myBtn">Try it</button>
 
     <p id="date"></p>
+
+    <!--dom navigation-->
+    <!-- each thing in dom is object and can be accessed by navigating through nodes -->
+    <h1 id="id01">My First Page</h1>
+    <p id="id02"></p>
+
+    <!-- dom nodes -->
+
+    <div id="div1">
+      <p id="p1">This is a paragraph.</p>
+      <p id="p2">This is another paragraph.</p>
+    </div>
     <script>
       // dom methods and properites
 
@@ -133,7 +145,37 @@
       }
 
       //event bubbling : event goes from child to ancestors, by default behaviour
-      //event capturing: event goes from parent to child, not by default 
-    </script>
+      //event capturing: event goes from parent to child, not by default
+
+      // dom navigation
+
+      document.getElementById("id02").innerHTML =
+        document.getElementById("id01").innerHTML;
+
+      // The nodeValue property specifies the value of a node.
+
+      // nodeValue for element nodes is null
+
+      //dom nodes
+
+      const para = document.createElement("p");
+      const node = document.createTextNode("This is new.");
+      para.appendChild(node);
+
+      const element = document.getElementById("div1");
+      element.appendChild(para);
+       const child = document.getElementById("p1");
+      element.replaceChild(para, child);
+//       An element can only exist once in the DOM.
+// When you use replaceChild(para, child), the browser removes it from the bottom and moves it to where child was.
+//    
+
+// DOM elements are objects, not just text or HTML. When you move an element, you’re not copying it — you’re physically relocating it in the DOM.
+
+//copying content (innerHTML) 
+//moving DOM elements (like with appendChild() or replaceChild()).
+
+
+</script>
   </body>
 </html>
