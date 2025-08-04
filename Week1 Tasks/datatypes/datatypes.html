@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //catogerize on base of how we can access them and how they are stored in memory
+        // primitive : a copy is given not direct access to that value
+         //7: string, number, boolean, null, symbol, bigint, undefined
+         //null datatype in documentation in object
+        // reference/ non-premitive: direct address is given , we can change value direct
+        // arrays, objects, fundtion
+        //its dataype returned by typeof function is always object for all 
+
+       const score= 100;
+       const scoreValue= 100.34;
+       const isLoggedIn= true;
+       const outsideTemp= null;
+       let hero=undefined;
+       const id = Symbol('123');
+       const anotherId = Symbol('123');
+       console.log(id===anotherId);  //false becuase symbol makes thing unique
+       const a = 1234567891011121334345345454;   
+
+       const arr = [1,2,3,4,5];
+       console.log(typeof arr);  //object
+
+       const object={
+        name: "Airus",
+        age: 21,
+       }
+       console.log(typeof arr);   //object
+
+       const fun= function (){
+        consol.log("hi i am a function");
+       }
+       console.log(typeof fun);  //function object
+
+
+
+
+//         JavaScript is a dynamically typed language. This means that variable types are determined at runtime, and you do not need to explicitly declare the type of a variable before using it. You can assign different types of values to a variable during its lifetime.
+
+// For example, in JavaScript, you can do the following:
+
+// let x = 10; // x is now a number
+// x = "Hello"; // x is now a string
+// x = true; // x is now a boolean
+// On the other hand, statically typed languages require you to declare the variable's type explicitly, and the type checking is done at compile-time, before the code is executed.
+
+// Languages like Java, C++, and TypeScript are statically typed, and they require you to specify the variable type explicitly when declaring them:
+
+// int x = 10; // x is a variable of type int
+// String name = "John"; // name is a variable of type String
+// JavaScript's dynamic typing allows for more flexibility but can lead to potential runtime errors if not handled carefully. Static typing, on the other hand, provides better type safety at the cost of some initial verbosity and strictness.
+    </script>
+</body>
+</html>

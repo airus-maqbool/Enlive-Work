@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //cannot redeclare block-scope varible in same block (const , let)
+        //can redeclare blobk-scope variable in same block (var)
+        let a= 40;  //block scope
+        const c=8;  //block scope
+      if(true){
+        
+        var b=6;  //global scope
+        
+      }
+      console.log(a);
+      console.log(b);
+      console.log(c);
+    </script>
+</body>
+
+</html>
