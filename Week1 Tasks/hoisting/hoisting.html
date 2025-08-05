@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hoisting</title>
+  </head>
+  <body>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo3"></p>
+    <script>
+
+      //Hoisting is JavaScript's default behavior of moving all declarations to the top of the current scope (to the top of the current script or the current function).
+
+  
+      // In JavaScript, a variable can be declared after it has been used. In other words; a variable can be used before it has been declared.
+      x = 5; // Assign 5 to x
+
+      elem = document.getElementById("demo"); // Find an element
+      elem.innerHTML = x; // Display x in the element
+
+      var x; // Declare x
+
+      //example2
+      var x; // Declare x
+      x = 6; // Assign 5 to x
+
+      elem = document.getElementById("demo1"); // Find an element
+      elem.innerHTML = x; // Display x in the element
+
+//       Variables defined with let and const are hoisted to the top of the block, but not initialized.Meaning: The block of code is aware of the variable, but it cannot be used until it has been declared.Using a let variable before it is declared will result in a ReferenceError.The variable is in a "temporal dead zone" from the start of the block until it is declared
+
+// Using a const variable before it is declared, is a syntax error, so the code will simply not run.
+
+// JavaScript only hoists declarations, not initializations.
+
+var x = 5;  // Initialize x
+
+elem = document.getElementById("demo3");      // Find an element 
+elem.innerHTML = "x is " + x + " and y is " + y;  // Display x and y
+
+var y = 7;  // Initialize y
+
+
+// JavaScript in strict mode does not allow variables to be used if they are not declared.
+    
+ // The Temporal Dead Zone (TDZ) in JavaScript refers to a period of time during which variables declared with let or const exist within a scope but cannot be accessed or assigned a value. Any attempt to access these variables within their TDZ will result in a ReferenceError.  
+    
+    </script>
+  </body>
+</html>

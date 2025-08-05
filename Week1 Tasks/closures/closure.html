@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Closure</title>
+  </head>
+  <body>
+    <button id="orange">Orange</button>
+    <button id="red">Red</button>
+    <script>
+      //lexical scoping parents'function scope is accessible by child function , vise versa is not true
+
+      function outer() {
+        let username = "Airus"; //blockscope
+        function inner() {
+          console.log(username);
+        }
+        inner();
+      }
+      outer();
+
+      //closure: A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). In other words, a closure gives a function access to its outer scope. In JavaScript, closures are created every time a function is created, at function creation time.
+      function makeFunc() {
+        const name = "Mozilla";
+        function displayName() {
+          console.log(name);
+        }
+        return displayName;
+      }
+
+      const myFunc = makeFunc();    //here makeFunc will return displayName and will be removed from stack so how displayName will access name now, it is because of closure (means not only function but lexical environment of parent will also be returned so that inner function can access name)
+
+
+      //practical example 
+      function onclickColor(color){
+        return function(){
+           document.body.style.backgroundColor=`${color}`;
+        }
+      }
+      //if we write our onclickColor as this :  than as right side first executed in = operator so instead of function , function call be doen and without clicking color will only be that is passed and , onclick actually need a function that can be called when needed so above to return function is necessary and that function is getting color becuase of closure property 
+    //   function onclickColor(color){
+    //       document.body.style.backgroundColor=`${color}`;
+    //   }
+      document.getElementById("orange").onclick=onclickColor("orange");  //here inner function will be returned with lexical scope (outer function scope i.e. color variable), onlclick requires a function that can be executed on every click 
+      document.getElementById("red").onclick=onclickColor("red");
+      myFunc();
+    </script>
+  </body>
+</html>
