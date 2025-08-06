@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object methods</title>
+  </head>
+  <body>
+    <p id="demo"></p>
+
+    <script>
+      const mySymb = Symbol("+");
+      //singleton it is only object of its on type
+      //when we make object by literal it is not singleton
+      //two methods to create object: object literals, object.create() this cause singleton object
+      //object literal:
+      const person = {
+        name: "airus", //conpiler itself make keys string but dont need to write in double quote
+        age: 18,
+        gender: "Female",
+        //if key has space enclose in double quote, now cannot be accessed by . mehtod use []
+        "full name": "Airus Maqbool",
+        // this how you can declare a symbol in object, and will be accessed with [without ""]
+        [mySymb]: "+",
+        setName: function (name1) {
+          this.name = name1;
+        },
+        getName: function () {
+          return this.name;
+        },
+      };
+
+      //how to access objects:
+      console.log(person.name);
+
+      console.log(person["name"]);
+      console.log(person["full name"]);
+      console.log(person); //here we can see that mySymb is a symbol
+
+      //how can overwrite values/change values
+      person.name = "ali";
+      console.log(person);
+      // can freeze object to get changed as:
+      //Object.freeze(person);
+      //now if you change no error but will not be changed
+      person.name = "Airus";
+      console.log(person);
+
+      // add a function
+
+      person.greeting = function () {
+        console.log(`Hello person ${this.name}`); //string interpolation , this referes to current object
+      };
+      console.log(person.greeting); // without greeting() actually greeting is reference to function , function in not executing
+      person.greeting();
+
+      person.setName("Fatima");
+      console.log(person.getName());
+
+      //objects built in methods
+      //1-object.assign(target, source)
+
+      // Create Target Object
+      const person1 = {
+        firstName: "John",
+        lastName: "Doe",
+        age: 50,
+        eyeColor: "blue",
+      };
+
+      // Create Source Object
+      const person2 = { firstName: "Anne", lastName: "Smith" };
+
+      // Assign Source to Target
+      Object.assign(person1, person2);
+
+      // Display Target
+      let text = Object.entries(person1);
+      document.getElementById("demo").innerHTML = text;
+      //object.entries
+
+      //Object.entries() returns an array of the key/value pairs in an object.
+      console.log(Object.entries(person));
+
+      //2-Object.fromEntries : make an object with given array of arrays of [key , value]
+
+      const fruits = [
+        ["apples", 300],
+        ["pears", 900],
+        ["bananas", 500],
+      ];
+
+      const myObj = Object.fromEntries(fruits);
+      console.log(myObj);
+
+      //3-Object.values : get values/ properties of object in an array
+      console.log(Object.values(person));
+
+      //4-Object.keys : get keys of object in an array
+      console.log(Object.keys(person));
+      //5- Object.groupBy(): The Object.groupBy() method groups elements of an array according to string values returned from a callback function in an object of array.
+      const people = [
+        { name: "Alice", age: 21 },
+        { name: "Bob", age: 25 },
+        { name: "Charlie", age: 21 },
+        { name: "David", age: 25 },
+      ];
+
+      const grouped = Object.groupBy(people, (person) => person.age);
+
+      console.log(grouped);
+      // 2 example
+      const nums = [1, 2, 3, 4, 5, 6];
+      const groupedNums = Object.groupBy(nums, (n) =>
+        n % 2 === 0 ? "even" : "odd"
+      );
+      console.log(groupedNums);
+
+    //6- for in loop for objects: js for in statement loops through the properties of and object.
+    let txt="";
+    for (let x in person1){  //x has keys
+         txt += person1[x]+" ";
+    }
+    console.log(txt)
+
+    
+    </script>
+  </body>
+</html>
