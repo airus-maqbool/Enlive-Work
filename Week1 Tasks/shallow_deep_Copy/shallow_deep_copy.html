@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shallow and deep copy</title>
+  </head>
+  <body>
+    <!-- https://www.geeksforgeeks.org/javascript/what-is-shallow-copy-and-deep-copy-in-javascript/ -->
+    <!-- Load Lodash from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+   
+
+    <script>
+      //       A shallow copy creates a new object or array, but it only copies the top-level properties. If those properties are references to other objects (like nested objects or arrays), the references are shared between the original and the copy. This means changes to nested data in the copy will also affect the original.
+
+      // Example: Object.assign(), spread operator (...) create shallow copies.
+
+      //Variables hold references to objects, not copies. So any change through one variable affects all references to that object — regardless of whether a property is primitive or not.
+      let employee = {
+        eid: "E102",
+        ename: "Jack",
+        eaddress: "New York",
+        salary: 50000,
+      };
+
+      let emp2 = employee;
+      emp2.ename = "Airus";
+      console.log(employee);
+      console.log(emp2);
+
+      // deep copy
+      //A deep copy, on the other hand, creates a completely independent copy of the object, including all nested objects or arrays. This ensures that changes made to one object do not affect the other. Each object is stored in a separate memory location, making them entirely independent.
+
+      let newEmployee = JSON.parse(JSON.stringify(employee));
+      newEmployee.ename = "Fatima";
+      console.log(employee);
+      console.log(newEmployee);
+
+      //This method is useful when the object is small and has serializable properties. But if the object is very large and contains certain non-serializable properties then there is a risk of data loss. Especially if an object contains methods then JSON.stringify() will fail as methods are non-serializable. There are better ways to a deep clone of which one is Lodash which allows cloning methods as well.
+      const lodash = _;
+      let Employee = {
+        eid: "E102",
+        ename: "Jack",
+        eaddress: "New York",
+        salary: 50000,
+        details: function () {
+          return "Employee Name: " + this.ename + "-->Salary: " + this.salary;
+        },
+      };
+
+      let deepCopy = lodash.cloneDeep(Employee);
+      console.log("Original Employee Object");
+      console.log(Employee);
+      console.log("Deep Copied Employee Object");
+      console.log(deepCopy);
+      deepCopy.eid = "E103";
+      deepCopy.ename = "Beck";
+      deepCopy.details = function () {
+        return "Employee ID: " + this.eid + "-->Salary: " + this.salary;
+      };
+      console.log("----------After Modification----------");
+      console.log("Original Employee Object");
+      console.log(Employee);
+      console.log("Deep Copied Employee Object");
+      console.log(deepCopy);
+      console.log(Employee.details());
+      console.log(deepCopy.details());
+    </script>
+  </body>
+</html>
